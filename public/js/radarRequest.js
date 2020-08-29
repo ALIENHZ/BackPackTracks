@@ -12,7 +12,7 @@ fetch(url,{
     method: 'post',
     headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'prj_live_pk_...'
+        'Authorization': 'prj_test_pk_35e16f210872ff7482ff092b7d66b68de856ccbd'
     },
     body: JSON.stringify(body)
 }).then(response=>{
