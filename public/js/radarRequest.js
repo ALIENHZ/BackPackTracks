@@ -18,6 +18,7 @@ fetch(url,{
 }).then(response=>{
     //should have some error handling here
     if (response.ok){
+        console.log(response.body);
         response.json();
     }else {
         return new Promise.reject("oopsie");
@@ -25,6 +26,6 @@ fetch(url,{
     })
 .then(data => {
     // user and events generated
-    console.log(data)
+    console.log(data);
   })
 .catch(error=>console.error(error));
