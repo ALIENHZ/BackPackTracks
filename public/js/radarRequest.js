@@ -12,14 +12,15 @@ fetch(url,{
     method: 'post',
     headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'prj_test_pk_35e16f210872ff7482ff092b7d66b68de856ccbd'
+        'Authorization': 'prj_test_pk_35e16f210872ff7482ff092b7d66b68de856ccbd',
     },
     body: JSON.stringify(body)
 }).then(response=>{
     //should have some error handling here
     if (response.ok){
-        console.log(response.body);
+        console.log(response);
         response.json();
+        console.log("nice");
     }else {
         return new Promise.reject("oopsie");
     }
@@ -29,3 +30,17 @@ fetch(url,{
     console.log(data);
   })
 .catch(error=>console.error(error));
+
+$.ajax({
+    url: url,
+    type: 'post',
+    data: body,
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'prj_test_pk_35e16f210872ff7482ff092b7d66b68de856ccbd'
+    },
+    dataType: 'json',
+    success: function (data) {
+        console.info(data);
+    }
+});
