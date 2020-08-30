@@ -17,20 +17,19 @@
             <form id="form-container" class="col s12">
                 <div class="row">
                     <div class="input-field col s6">
-                    <input placeholder="" id="num-of-stops" type="number" class="validate">
+                    <input placeholder="" id="num-of-stops" type="number" min="0" max="100" class="validate">
                     <label for="first_name">How many stops would you like on your road trip?</label>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input disabled value="I am not editable" id="disabled" type="text" class="validate">
-                        <label for="disabled">Disabled</label>
-                    </div>
+                <div id="destination-container">
+
                 </div>
             </form>
         </div>
            
-    <script src="queries.js" defer></script>
-    <script src="planner.js" defer></script>
+    <script src="js/queries.js" defer></script>
+    <script src="js/planner.js" defer></script>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
     </body>
 </html>
