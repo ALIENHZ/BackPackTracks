@@ -85,6 +85,7 @@ signupForm.addEventListener('submit', (e) => {
             currentUser = doc;
             currentUserData = doc.data();
             console.info(currentUserData);
+            console.log(currentUserData.email);
         })
         .catch(error=>console.error(error));
     })

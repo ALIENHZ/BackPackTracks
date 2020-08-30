@@ -1,4 +1,8 @@
 
+
+
+
+
 const destinationContainer = document.getElementById("destination-container");
 
 
@@ -11,6 +15,27 @@ const submitButton = document.getElementById("form-submit");
 
 let stopTracker = 0;
 let idTracker = 0;
+
+auth.onAuthStateChanged(user => {
+    if (user) {
+        console.log('poop logged in: ', user);
+        if (currentUser == null){
+            getUser(user.uid).then(doc=>{
+                currentUser = doc;
+                currentUserData = doc.data();
+                check();
+            })
+            .catch(error=>console.error(error));}
+        else{
+            check();
+        }
+
+        
+        
+    } else {
+        console.log('user logged out')
+    }
+})
 
 
 function updateForm(e) {
@@ -42,8 +67,15 @@ function updateForm(e) {
 
 }
 
-function submitForm() {
 
+function submitForm() {
+    getUser(cred.user.uid).then(doc=>{
+        currentUser = doc;
+        currentUserData = doc.data();
+        setupUI(user);
+        console.info(currentUserData);
+    })
+    console.log(currentUserData);
     let existingTrips = getAllTripInfo(currentUserData.email);
     
     console.log("existingTrips: " + existingTrips);
