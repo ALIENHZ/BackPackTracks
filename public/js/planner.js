@@ -73,11 +73,8 @@ if (existingTrips){
 
     let destinationList = [];
     const destinationContainerCount = destinationContainer.childNodes.length;
-    console.log(destinationContainer.childNodes[i]);
-console.log(destinationContainer.childNodes[i].childNodes[1]);
-console.log(destinationContainer.childNodes[i].childNodes[1].childNodes[0].value);
-    for(i = 0 ; i < destinationContainerCount ; i++) {
-        destinationList.append(destinationContainer.childNodes[i].childNodes[1].childNodes[0].value);
+    for(i = 0 ; i < destinationContainerCount - 1 ; i++) {
+        destinationList.push(destinationContainer.childNodes[i + 1].childNodes[1].childNodes[1].value);
     }
 
     console.log(destinationList);
@@ -93,7 +90,7 @@ console.log(destinationContainer.childNodes[i].childNodes[1].childNodes[0].value
     const eta = null;
 
 
-    console.log(setTripDate(currentUserData.email, tripID, start, destinationList, distance, startDate, endDate, eta, planDateStart));
+    console.log(setTripData(currentUserData.email, tripID, start, destinationList, distance, startDate, endDate, eta, planDateStart));
 
 }
 
