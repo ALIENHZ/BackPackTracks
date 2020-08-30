@@ -1,4 +1,4 @@
-Radar.initialize('prj_test_pk_35e16f210872ff7482ff092b7d66b68de856ccbd'); //will have to change to live key
+//Radar.initialize('prj_test_pk_35e16f210872ff7482ff092b7d66b68de856ccbd'); //will have to change to live key
 
 
 
@@ -8,17 +8,41 @@ const start = function(tripNum){
     let trips = currentUserData.trips[tripNum];
     let dest = trips.listOfDestinations;
 
-    dest.forEach(address)
+    dest.forEach(address=>{
+        const url = "https://api.radar.io/v1/geofences/";
+                //console.log(results);
+                let body = {
+                    description:"C305F2DB-56DC-404F-B6C1-BC52F0B6d80D8",
+                    type: "circle",
+                    coordinates: [40.70390, -73.98670],
+                    radius: 100
+                }
 
-        let address = currentUserData.address;
-        let city = currentUserData.city;
-        let state = currentUserData.state;
-        Radar.geocode(`${address} ${city} ${state}`, function(err, result){
-            if(!err){
-                
-            }
+                fetch(url,{
+                    method: 'post',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'prj_test_sk_385d241314be68dfed532a8bea96aff105d74bcb',
+                    },
+                    body: JSON.stringify(body)
+                }).then(response=>{
+                    //should have some error handling here
+                    if (response.ok){
+                        console.log(response);
+                        response.json();
+                        console.log("nice");
+                    }else {
+                        return new Promise.reject("oopsie");
+                    }
+                    })
+                .then(data => {
+                    // user and events generated
+                    console.log(data);
+                })
+                .catch(error=>console.error(error));
+    })
 
-        })
+        
 
     Radar.trackOnce(function(err, result) {
         if (!err) {
@@ -32,4 +56,118 @@ const start = function(tripNum){
     console.log(1);
 }
 console.log(3);
-start();
+//start();
+
+const test = function(){
+    let address = "57 Barn Swallow Blvd";
+        let city = "Marlboro";
+        let state = "NJ";
+        console.log(`${address} ${city} ${state}`);
+        const url = "https://api.radar.io/v1/geofences/";
+                //console.log(results);
+                let body = {
+                    description:"C305F2DB-56DC-404F-B6C1-BC52F0B6d80D8",
+                    type: "circle",
+                    coordinates: [40.70390, -73.98670],
+                    radius: 100
+                }
+
+                fetch(url,{
+                    method: 'post',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'prj_test_sk_385d241314be68dfed532a8bea96aff105d74bcb',
+                    },
+                    body: JSON.stringify(body)
+                }).then(response=>{
+                    //should have some error handling here
+                    if (response.ok){
+                        console.log(response);
+                        response.json();
+                        console.log("nice");
+                    }else {
+                        return new Promise.reject("oopsie");
+                    }
+                    })
+                .then(data => {
+                    // user and events generated
+                    console.log(data);
+                })
+                .catch(error=>console.error(error));
+        /*const url = "https://api.radar.io/v1/geocode/forward?query=20+jay+st+brooklyn+ny";
+                console.log("nut");
+                
+
+                fetch(url,{
+                    method: 'get',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'prj_test_pk_35e16f210872ff7482ff092b7d66b68de856ccbd',
+                    }
+                }).then(response=>{
+                    //should have some error handling here
+                    if (response.ok){
+                        console.log(response);
+                        response.text();
+                        console.log("nice");
+                    }else {
+                        return new Promise.reject("oopsie");
+                    }
+                    })
+                .then(data => {
+                    // user and events generated
+                    console.log(data);
+                })
+                .catch(error=>console.error(error));*/
+        /*Radar.geocode('20 jay st brooklyn ny', function(err, result) {
+            if (!err) {
+              console.log("cool");
+            }
+            else{
+                console.log(err);
+            }
+          });*/
+        /*Radar.geocode('20 jay st brooklyn ny', function(err, result){
+            if(!err){
+
+                const url = "https://api.radar.io/v1/geofences/";
+                console.log(results);
+                let body = {
+                    description:"C305F2DB-56DC-404F-B6C1-BC52F0B6d80D8",
+                    type: "circle",
+                    coordinates: [result.addresses.latitude, result.address.longitude],
+                    radius: 100
+                }
+
+                fetch(url,{
+                    method: 'post',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'prj_test_sk_385d241314be68dfed532a8bea96aff105d74bcb',
+                    },
+                    body: JSON.stringify(body)
+                }).then(response=>{
+                    //should have some error handling here
+                    if (response.ok){
+                        console.log(response);
+                        response.json();
+                        console.log("nice");
+                    }else {
+                        return new Promise.reject("oopsie");
+                    }
+                    })
+                .then(data => {
+                    // user and events generated
+                    console.log(data);
+                })
+                .catch(error=>console.error(error));
+
+
+
+
+            }
+
+        })*/
+}
+
+//test();
