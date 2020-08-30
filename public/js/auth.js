@@ -37,7 +37,8 @@ signupForm.addEventListener('submit', (e) => {
         name: name,
         address: address,
         city: city,
-        state: state
+        state: state,
+        trips: [],
     })
     
     // sign up the user
