@@ -42,17 +42,6 @@ function updateForm(e) {
 
 }
 
-auth.onAuthStateChanged(user => {
-    if (user) {
-        getUser(user.uid).then(doc=>{
-                currentUser = doc;
-                currentUserData = doc.data();
-            })
-            .catch(error=>console.error(error));
-        
-    }
-})
-
 function submitForm() {
 
     let existingTrips = getAllTripInfo(currentUserData.email);
