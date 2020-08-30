@@ -43,18 +43,18 @@ function updateForm(e) {
 
 }
 
+auth.onAuthStateChanged(user => {
+    if (user) {
+        getUser(cred.user.uid).then(doc=>{
+                currentUser = doc;
+                currentUserData = doc.data();
+            })
+            .catch(error=>console.error(error));
+        
+    }
+})
 
 function submitForm() {
-
-    if(currentUserData == null) {
-        getUser(cred.user.uid).then(doc=>{
-                    currentUser = doc;
-                    currentUserData = doc.data();
-                    setupUI(user);
-                    console.info(currentUserData);
-                })
-                .catch(error=>console.error(error));
-    }
 
     let existingTrips = getAllTripInfo(currentUserData.email);
     
