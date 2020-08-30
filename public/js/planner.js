@@ -81,6 +81,8 @@ function submitForm() {
 }
 
 
+document.addEventListener("DOMContentLoaded", updateForm);
+
 stopNumberElement.addEventListener("input", updateForm)
 
 submitButton.addEventListener("submit", function (e) {
