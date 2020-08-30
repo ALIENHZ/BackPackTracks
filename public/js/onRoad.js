@@ -5,9 +5,9 @@
 console.log(2);
 const start = function(tripNum){
     // order placed or user taps "I'm on my way"
-    let trips = currentUserData.trips[tripNum];
-    let dest = trips.listOfDestinations;
-
+    //let trips = currentUserData.trips[tripNum];
+    //let dest = trips.listOfDestinations;
+    /*
     dest.forEach(address=>{
         const url = "https://api.radar.io/v1/geofences/";
                 //console.log(results);
@@ -40,13 +40,15 @@ const start = function(tripNum){
                     console.log(data);
                 })
                 .catch(error=>console.error(error));
-    })
+    })*/
 
         
 
     Radar.trackOnce(function(err, result) {
         if (!err) {
-          console.log(`location: ${result.location} events: ${result.events} user ${result.user}`)
+          console.log(result.location);
+          console.log(result.events);
+          console.log(result.user);
         }
       });
 
@@ -56,7 +58,7 @@ const start = function(tripNum){
     console.log(1);
 }
 console.log(3);
-//start();
+start();
 
 const test = function(){
     let address = "57 Barn Swallow Blvd";
