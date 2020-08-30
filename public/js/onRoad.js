@@ -41,8 +41,40 @@ const start = function(tripNum){
                 })
                 .catch(error=>console.error(error));
     })*/
+    const url = "https://api.radar.io/v1/geofences/";
+    //console.log(results);
+    let body = {
+        description:"C305F2DB-56DC-404F-B6C1-BC52F0B6d80D8",
+        type: "circle",
+        coordinates: [36.056595, -73.98670],
+        radius: 100
+    }
 
-    /*Radar.trackOnce({
+    fetch(url,{
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'prj_test_sk_385d241314be68dfed532a8bea96aff105d74bcb',
+        },
+        body: JSON.stringify(body)
+    }).then(response=>{
+        //should have some error handling here
+        if (response.ok){
+            console.log(response);
+            response.json();
+            console.log("nice");
+        }else {
+            return new Promise.reject("oopsie");
+        }
+        })
+    .then(data => {
+        // user and events generated
+        console.log(data);
+    })
+    .catch(error=>console.error(error));
+
+
+    Radar.trackOnce({
         latitude: 39.2904,
         longitude: -76.6122,
         accuracy: 65
@@ -53,7 +85,7 @@ const start = function(tripNum){
       });
       
         
-      console.log("h");*/
+      console.log("h");
     Radar.trackOnce(function(err, result) {
         if (!err) {
           console.log(result.location);
@@ -73,9 +105,7 @@ console.log(3);
 start();
 
 const test = function(){
-    let address = "57 Barn Swallow Blvd";
-        let city = "Marlboro";
-        let state = "NJ";
+
         console.log(`${address} ${city} ${state}`);
         const url = "https://api.radar.io/v1/geofences/";
                 //console.log(results);
