@@ -6,7 +6,18 @@ var currentUserData = null;
 auth.onAuthStateChanged(user => {
     if (user) {
         console.log('user logged in: ', user)
-        setupUI(user);
+        if (!currentUser == null){
+            getUser(cred.user.uid).then(doc=>{
+                currentUser = doc;
+                currentUserData = doc.data();
+                setupUI(user);
+                console.info(currentUserData);
+            })
+            .catch(error=>console.error(error));
+        }else{
+            setupUI(user);
+        }
+        
     } else {
         
         if(!document.location.href.includes("index.html")){
