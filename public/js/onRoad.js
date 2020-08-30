@@ -49,7 +49,6 @@ const start = function(tripNum){
       }, function(err, result) {
         if (!err) {
             console.log("hi");
-          // do something with result.events, result.user
         }
       });
       
@@ -65,9 +64,11 @@ const start = function(tripNum){
 
     console.log("tri")
 
+    //event handling when enter geofence?
 
     console.log(1);
 }
+          // do something with result.events, result.user
 console.log(3);
 start();
 
