@@ -3,7 +3,7 @@ const users = db.collection("users");
 function getUser(UserID){ /*in future want to use user ID*/
     return new Promise((resolve,reject)=>{
 
-        users.where("userid","==",UserID).get().then(
+        users.doc(UserID).get().then(
         function(snapshot) {
             let doc = snapshot.docs[0];
             if(doc && doc.exists) { 
