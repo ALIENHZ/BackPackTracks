@@ -19,7 +19,7 @@ function getUserInfo(userID) {
 
 }
 
-function setTripData(userID, tripID, start, end, distance, date, startTime, endTime, eta) {
+function setTripData(userID, tripID, start, end, distance, date, startTime, endTime, eta, planStartTime) {
 
     let info = getUserInfo(userID);
     let tripList = info.trips;
@@ -35,6 +35,7 @@ function setTripData(userID, tripID, start, end, distance, date, startTime, endT
                 startTime: startTime,
                 endTime: endTime,
                 eta: eta,
+                planStartTime: planStartTime,
             }
         )
     }).then( 
@@ -48,7 +49,7 @@ function setTripData(userID, tripID, start, end, distance, date, startTime, endT
 
 }
 
-function updateTripData(userID, tripID, start, end, distance, date, startTime, endTime, eta) {
+function updateTripData(userID, tripID, start, end, distance, date, startTime, endTime, eta, planStartTime) {
     let info = getUserInfo(userID);
     let tripList = info.trips;
     tripList.forEach(
@@ -63,6 +64,7 @@ function updateTripData(userID, tripID, start, end, distance, date, startTime, e
                     startTime: startTime,
                     endTime: endTime,
                     eta: eta,
+                    planStartTime: planStartTime,
                 }
             }
             return true;
