@@ -64,11 +64,11 @@ signupForm.addEventListener('submit', (e) => {
         signupForm.reset();
 
         let uid = cred.user.uid;
-        console.log(cred);
-        console.log(uid);
+        
         db.collection('users').doc(docID).update({
             userid: uid || "none"
         }).then(()=>{
+            Radar.setUserId(cred.user.uid);
             return getUser(cred.user.uid)
             /*Radar.setUserId(uid);
             Radar.setMetadata({
@@ -120,8 +120,9 @@ loginForm.addEventListener('submit', (e) => {
         const modal = document.querySelector('#modal-login');
         M.Modal.getInstance(modal).close();
         loginForm.reset();
+        Radar.setUserId(cred.user.uid);
 
-        return getUser(cred.user.uid)
+        return getUser(cred.user.uid);
     }).then(doc=>{
         currentUser = doc;
         currentUserData = doc.data();
