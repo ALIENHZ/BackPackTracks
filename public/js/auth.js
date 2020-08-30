@@ -25,12 +25,19 @@ signupForm.addEventListener('submit', (e) => {
     const password = signupForm['signup-password'].value;
 
     const name = signupForm['signup-name'].value;
+
+    const address = signupForm['signup-address'].value;
+    const city = signupForm['signup-city'].value;
+    const state = signupForm['signup-state'].value;
     
 
     const docID = email;
     db.collection('users').doc(docID).set({
         email: email,
         name: name,
+        address: address,
+        city: city,
+        state: state
     })
     
     // sign up the user
@@ -41,6 +48,11 @@ signupForm.addEventListener('submit', (e) => {
     })
     
     auth.onAuthStateChanged(user => {
+        Radar.setUserId(user.uid);
+        Radar.setMetadata({
+            //want to put name and info here too? or unecessary
+
+        });
         db.collection('users').doc(docID).update({
             userid: user.uid || "none"
         }).then(bleh=>{
