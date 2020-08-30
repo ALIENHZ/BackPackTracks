@@ -35,13 +35,31 @@
             <form id="form-container" class="col s6">
                 <div class="row">
                     <div class="input-field col s10">
-                    <input placeholder="" id="num-of-stops" type="number" min="0" max="100" class="validate col s1" style="margin-left: 118%; color: #f39c12">
+                        <input id="form-name" type="text" class="validate col s8" style="margin-left: 88%; color: #f39c12" required>
+                        <label for="form-name" style="margin-left: 87%;">What is the name of your trip? (This should be unique.)</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s10">
+                        <input id="form-start-date" type="date" class="validate col s3" style="margin-left: 110%; color: #f39c12" required>
+                        <label for="form-start-date" style="margin-left: 105%;">When does the trip begin?</label>
+                    </div><br><br><br><br><br>
+                    <div class="input-field col s10">
+                        <input id="form-end-date" type="date" class="validate col s3" style="margin-left: 110%; color: #f39c12" required>
+                        <label for="form-end-date" style="margin-left: 105%;">When does the trip end?</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s10">
+                    <input placeholder="" id="num-of-stops" type="number" value="3" min="1" max="100" class="validate col s1" style="margin-left: 118%; color: #f39c12">
                     <label for="first_name" style="margin-left: 97%">How many stops would you like on your road trip?</label>
                     </div>
                 </div>
                 <div id="destination-container">
 
                 </div>
+                <br><br>
+                <button class="btn lavender darken-2 z-depth-0" style="margin-left: 97%">Submit</button>
             </form>
         </div>
 
@@ -90,30 +108,28 @@
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="js/materialize.js"></script>
 
-<script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyAhCfldT_zbbAK8Jl6usEtYbC6rEhnbTE8",
-    authDomain: "nhacks-671d0.firebaseapp.com",
-    databaseURL: "https://nhacks-671d0.firebaseio.com",
-    projectId: "nhacks-671d0",
-    storageBucket: "nhacks-671d0.appspot.com",
-    messagingSenderId: "658368861026",
-    appId: "1:658368861026:web:1a5f4bda10c4b0be3cd23b",
-    measurementId: "G-5GNWK6YYMX"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+    <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyAMc_okDdMpPv2Qm20TWV761SpT6vn0luI",
+        authDomain: "roadtrip-planner-c92cb.firebaseapp.com",
+        databaseURL: "https://roadtrip-planner-c92cb.firebaseio.com",
+        projectId: "roadtrip-planner-c92cb",
+        storageBucket: "roadtrip-planner-c92cb.appspot.com",
+        messagingSenderId: "353920010382",
+        appId: "1:353920010382:web:f7fb1e05251992f0f721df",
+        measurementId: "G-1DK18G16BH"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
 
-    // make auth and firestore references
-    const auth = firebase.auth();
-    const db = firebase.firestore();
-</script>
+        // make auth and firestore references
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+    </script>
         <script src="js/auth.js"></script>
         <script src="js/index.js"></script>
         <script src="js/queries.js"></script>
-        <script src="js/schedules.js"></script>
-        <script src="js/edit.js"></script>
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="js/materialize.js"></script>
     </body>

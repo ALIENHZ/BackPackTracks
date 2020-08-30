@@ -37,25 +37,25 @@ function getUserInfo(userID) {
 
 }
 
-function setTripData(userID, tripID, start, listOfDestinations, distance, date, startTime, endTime, eta, planStartTime) {
+function setTripData(userID, tripID, start, listOfDestinations, distance, startTime, endTime, eta, planStartTime) {
 
     let info = getUserInfo(userID);
     let tripList = info.trips;
+    tripList.push(
+        {
+            tripID: tripID,
+            start: start,
+            destinations: listOfDestinations,
+            distance: distance,
+            startTime: startTime,
+            endTime: endTime,
+            eta: eta,
+            planStartTime: planStartTime,
+        }
+    )
 
     db.collection('users').doc(userID).update({
-        trips: tripList.push(
-            {
-                tripID: tripID,
-                start: start,
-                destinations: listOfDestinations,
-                distance: distance,
-                date: date,
-                startTime: startTime,
-                endTime: endTime,
-                eta: eta,
-                planStartTime: planStartTime,
-            }
-        )
+        trips: tripList
     }).then( 
         bleh => { return true; }
     ).catch(
@@ -67,7 +67,7 @@ function setTripData(userID, tripID, start, listOfDestinations, distance, date, 
 
 }
 
-function updateTripData(userID, tripID, start, listOfDestinations, distance, date, startTime, endTime, eta, planStartTime) {
+function updateTripData(userID, tripID, start, listOfDestinations, distance, startTime, endTime, eta, planStartTime) {
     let info = getUserInfo(userID);
     let tripList = info.trips;
     tripList.forEach(
@@ -78,16 +78,25 @@ function updateTripData(userID, tripID, start, listOfDestinations, distance, dat
                     start: start,
                     destinations: listOfDestinations,
                     distance: distance,
-                    date: date,
                     startTime: startTime,
                     endTime: endTime,
                     eta: eta,
                     planStartTime: planStartTime,
                 }
             }
-            return true;
+            db.collection('users').doc(userID).update({
+                trips: tripList
+            }).then( 
+                bleh => { return true; }
+            ).catch(
+                error => { 
+                    console.error(error);
+                    return false;
+                }
+            )
         }
     )
+    console.log("No trip of that name found")
     return false;
 }
 
@@ -106,4 +115,11 @@ function getTripInfo(userID, tripID) {
         }
     )
     return false;
+}
+
+function getAllTripInfo(userID) {
+
+    let info = getUserInfo(userID);
+    return info.trips || false;
+
 }
