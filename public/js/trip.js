@@ -5,12 +5,12 @@ auth.onAuthStateChanged(user => {
             getUser(cred.user.uid).then(doc=>{
                 currentUser = doc;
                 currentUserData = doc.data();
-                
+                startChecklist();
                 console.info(currentUserData);
             })
             .catch(error=>console.error(error));
         }else{
-            
+            startChecklist();
         }
         
     } else {
@@ -19,11 +19,18 @@ auth.onAuthStateChanged(user => {
             document.location.href = "index.html";
             console.log( document.location.href);
         }
-        setupUI();
+        
         console.log('user logged out');
     }
 })
 
 function startChecklist(){
-    
+
+}
+
+function makeCheck(){
+    let container = Document.createElement('div');
+    container.classList.add("check-container");
+    let img = Document.createElement('img');
+    img.src = 
 }
