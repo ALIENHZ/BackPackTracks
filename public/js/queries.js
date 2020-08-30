@@ -1,9 +1,9 @@
 const users = db.collection("users");
 
-function getUser(UserID){ /*in future want to use user ID*/
+function getUser(userID){ /*in future want to use user ID*/
     return new Promise((resolve,reject)=>{
 
-        users.doc(UserID).get().then(
+        users.doc(userID).get().then(
         function(snapshot) {
             let doc = snapshot.docs[0];
             if(doc && doc.exists) { 
