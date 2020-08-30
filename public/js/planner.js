@@ -14,7 +14,6 @@ let idTracker = 0;
 
 
 function updateForm(e) {
-
     if(stopNumberElement.value > stopTracker) {
         for(i = 0 ; i < stopNumberElement.value - stopTracker ; i++) {
             let newRow = document.createElement("div");
@@ -46,7 +45,9 @@ function updateForm(e) {
 function submitForm() {
 
     let existingTrips = getAllTripInfo(currentUserData.email);
-
+    
+    console.log("existingTrips: " + existingTrips);
+if (existingTrips){
     existingTrips.forEach(
         function (trip) {
             if (trip.tripID == nameElement.value) {
@@ -56,14 +57,16 @@ function submitForm() {
             }
         }
     )
+}
 
 
     let destinationList = [];
     const destinationContainerCount = destinationContainer.childNodes.length;
-    
-    for(i = 0 ; i < destinationContainerCount ; i++) {
-        destinationList.append(destinationContainer.childNodes[i].childNodes[0].childNodes[1].value);
+    for(i = 0 ; i < destinationContainerCount - 1 ; i++) {
+        destinationList.push(destinationContainer.childNodes[i + 1].childNodes[1].childNodes[1].value);
     }
+
+    console.log(destinationList);
 
     const tripID = nameElement.value;
     const start = destinationList[0];
@@ -76,7 +79,7 @@ function submitForm() {
     const eta = null;
 
 
-    setTripDate(currentUserData.email, tripID, start, destinationList, distance, startDate, endDate, eta, planDateStart);
+    console.log(setTripData(currentUserData.email, tripID, start, destinationList, distance, startDate, endDate, eta, planDateStart));
 
 }
 
@@ -85,7 +88,7 @@ document.addEventListener("DOMContentLoaded", updateForm);
 
 stopNumberElement.addEventListener("input", updateForm)
 
-submitButton.addEventListener("submit", function (e) {
+submitButton.addEventListener("click", function (e) {
     e.preventDefault();
     submitForm();
 })
