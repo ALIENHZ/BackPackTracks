@@ -14,7 +14,6 @@ let idTracker = 0;
 
 
 function updateForm(e) {
-
     if(stopNumberElement.value > stopTracker) {
         for(i = 0 ; i < stopNumberElement.value - stopTracker ; i++) {
             let newRow = document.createElement("div");
@@ -45,7 +44,7 @@ function updateForm(e) {
 
 auth.onAuthStateChanged(user => {
     if (user) {
-        getUser(cred.user.uid).then(doc=>{
+        getUser(user.uid).then(doc=>{
                 currentUser = doc;
                 currentUserData = doc.data();
             })
@@ -59,7 +58,7 @@ function submitForm() {
     let existingTrips = getAllTripInfo(currentUserData.email);
     
     console.log("existingTrips: " + existingTrips);
-
+if (existingTrips){
     existingTrips.forEach(
         function (trip) {
             if (trip.tripID == nameElement.value) {
@@ -69,13 +68,16 @@ function submitForm() {
             }
         }
     )
+}
 
 
     let destinationList = [];
     const destinationContainerCount = destinationContainer.childNodes.length;
-    
+    console.log(destinationContainer.childNodes[i]);
+console.log(destinationContainer.childNodes[i].childNodes[1]);
+console.log(destinationContainer.childNodes[i].childNodes[1].childNodes[0].value);
     for(i = 0 ; i < destinationContainerCount ; i++) {
-        destinationList.append(destinationContainer.childNodes[i].childNodes[0].childNodes[1].value);
+        destinationList.append(destinationContainer.childNodes[i].childNodes[1].childNodes[0].value);
     }
 
     console.log(destinationList);
