@@ -26,7 +26,7 @@ function updateForm() {
         }
     }
     else {
-        for(i = 0 ; i < stopTracker - stopNumberElement.value ; i ++ ) {
+        for(i = 0 ; i < stopTracker - stopNumberElement.value ; i++ ) {
             destinationContainer.removeChild(destinationContainer.lastChild);
             idTracker -= 1;
         }
