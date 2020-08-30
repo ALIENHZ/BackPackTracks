@@ -100,6 +100,18 @@
                   <input type="text" id="signup-name" required />
                   <label for="signup-name">Full name</label>
                 </div>
+                <div class="input-field">
+                  <input type="text" id="signup-address" required />
+                  <label for="signup-address">Address</label>
+                </div>
+                <div class="input-field">
+                  <input type="text" id="signup-city" required />
+                  <label for="signup-city">City/Town</label>
+                </div>
+                <div class="input-field">
+                  <input type="text" id="signup-state" required />
+                  <label for="signup-state">State</label>
+                </div>
                 
                 <button class="btn lavender darken-2 z-depth-0">Sign up</button>
               </form>
@@ -150,6 +162,7 @@
     // make auth and firestore references
     const auth = firebase.auth();
     const db = firebase.firestore();
+    Radar.initialize('prj_test_pk_35e16f210872ff7482ff092b7d66b68de856ccbd'); //will have to change to live key
 </script>
 <script
 src="https://code.jquery.com/jquery-3.5.1.min.js"
