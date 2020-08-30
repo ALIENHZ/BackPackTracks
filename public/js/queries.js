@@ -1,4 +1,22 @@
+const users = db.collection("users");
 
+function getUser(UserID){ /*in future want to use user ID*/
+    return new Promise((resolve,reject)=>{
+
+        users.where("userid","==",UserID).get().then(
+        function(snapshot) {
+            let doc = snapshot.docs[0];
+            if(doc && doc.exists) { 
+                console.log(doc.data());
+                resolve(doc);
+            }
+            else{
+                reject("Error user does not exist.");
+            }
+            }).catch((error) => reject(error));
+
+    })
+}
 
 function getUserInfo(userID) {
 
