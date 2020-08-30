@@ -41,20 +41,21 @@ function setTripData(userID, tripID, start, listOfDestinations, distance, startT
 
     let info = getUserInfo(userID);
     let tripList = info.trips;
+    tripList.push(
+        {
+            tripID: tripID,
+            start: start,
+            destinations: listOfDestinations,
+            distance: distance,
+            startTime: startTime,
+            endTime: endTime,
+            eta: eta,
+            planStartTime: planStartTime,
+        }
+    )
 
     db.collection('users').doc(userID).update({
-        trips: tripList.push(
-            {
-                tripID: tripID,
-                start: start,
-                destinations: listOfDestinations,
-                distance: distance,
-                startTime: startTime,
-                endTime: endTime,
-                eta: eta,
-                planStartTime: planStartTime,
-            }
-        )
+        trips: tripList
     }).then( 
         bleh => { return true; }
     ).catch(
@@ -83,9 +84,19 @@ function updateTripData(userID, tripID, start, listOfDestinations, distance, sta
                     planStartTime: planStartTime,
                 }
             }
-            return true;
+            db.collection('users').doc(userID).update({
+                trips: tripList
+            }).then( 
+                bleh => { return true; }
+            ).catch(
+                error => { 
+                    console.error(error);
+                    return false;
+                }
+            )
         }
     )
+    console.log("No trip of that name found")
     return false;
 }
 
