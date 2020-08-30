@@ -42,7 +42,7 @@ const start = function(tripNum){
                 .catch(error=>console.error(error));
     })*/
 
-    Radar.trackOnce({
+    /*Radar.trackOnce({
         latitude: 39.2904,
         longitude: -76.6122,
         accuracy: 65
@@ -53,7 +53,7 @@ const start = function(tripNum){
       });
       
         
-      console.log("h");
+      console.log("h");*/
     Radar.trackOnce(function(err, result) {
         if (!err) {
           console.log(result.location);

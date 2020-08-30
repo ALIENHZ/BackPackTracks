@@ -32,5 +32,8 @@ function makeCheck(){
     let container = Document.createElement('div');
     container.classList.add("check-container");
     let img = Document.createElement('img');
-    img.src = 
+    img.src = "images/checky.png"
+    let lbl = Document.createElement('label');
+    let p = Document.createElement('p');
+    p.css({color: "#d16909", font-size: "50px"})
 }
