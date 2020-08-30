@@ -56,7 +56,7 @@ signupForm.addEventListener('submit', (e) => {
         db.collection('users').doc(docID).update({
             userid: user.uid || "none"
         }).then(bleh=>{
-            //if(document.location.href.includes("index.html"))  document.location.href = "trips.html";
+            if(document.location.href.includes("index.html"))  document.location.href = "myTrips.html";
         });
     })
 })
