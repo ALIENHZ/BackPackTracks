@@ -15,8 +15,8 @@ function updateForm() {
             newRow.classList.add("row");
 
             newRow.innerHTML = `
-                            <div class="input-field col s12">
-                            <input placeholder="" id="destination-` + idTracker.toString() + `" type="text" class="validate">
+                            <div class="input-field col s12" style="margin-left: 50%; ">
+                            <input placeholder="" id="destination-` + idTracker.toString() + `" type="text" class="validate" style="color: #f39c12">
                             <label for="destination-` + idTracker.toString() + `">Destination #` + (idTracker + 1).toString() + `</label>
                             </div>`;
 
