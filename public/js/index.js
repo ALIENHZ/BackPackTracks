@@ -21,11 +21,18 @@ const setupUI = (user) => {
     }
 }
 
+const setupSelect = ()=>{
+    var selects = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(selects);
+}
+
 // setup materialize components
 document.addEventListener('DOMContentLoaded', function() {
 
     var modals = document.querySelectorAll('.modal');
-    M.Modal.init(modals);
+    M.Modal.init(modals, {
+        onOpenStart: setupSelect
+    });
   
     var items = document.querySelectorAll('.collapsible');
     M.Collapsible.init(items);
