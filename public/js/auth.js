@@ -1,4 +1,8 @@
 // listen for auth status changes and logs them to the console
+var currentUser = null;
+var currentUserData = null;
+
+
 auth.onAuthStateChanged(user => {
     if (user) {
         console.log('user logged in: ', user)
@@ -29,7 +33,8 @@ signupForm.addEventListener('submit', (e) => {
     const address = signupForm['signup-address'].value;
     const city = signupForm['signup-city'].value;
     const state = signupForm['signup-state'].value;
-    
+
+
 
     const docID = email;
     db.collection('users').doc(docID).set({
@@ -46,19 +51,35 @@ signupForm.addEventListener('submit', (e) => {
         const modal = document.querySelector('#modal-signup');
         M.Modal.getInstance(modal).close();
         signupForm.reset();
+
+        let uid = cred.user.uid;
+        console.log(cred);
+        console.log(uid);
+        db.collection('users').doc(docID).update({
+            userid: uid || "none"
+        }).then(()=>{
+            return getUser(cred.user.uid)
+            /*Radar.setUserId(uid);
+            Radar.setMetadata({
+                //want to put name and info here too? or unecessary
+
+            });
+            Radar.geocode(`${address} ${city} ${state}`, function(err, result){
+                if (!err){
+                    
+                }
+            })*/
+            // if(document.location.href.includes("index.html"))  document.location.href = "myTrips.html";
+        }).then(doc=>{
+            currentUser = doc;
+            currentUserData = doc.data();
+            console.info(currentUserData);
+        })
+        .catch(error=>console.error(error));
     })
     
     auth.onAuthStateChanged(user => {
-        Radar.setUserId(user.uid);
-        Radar.setMetadata({
-            //want to put name and info here too? or unecessary
-
-        });
-        db.collection('users').doc(docID).update({
-            userid: user.uid || "none"
-        }).then(bleh=>{
-            if(document.location.href.includes("index.html"))  document.location.href = "myTrips.html";
-        });
+        
     })
 })
 
@@ -88,5 +109,12 @@ loginForm.addEventListener('submit', (e) => {
         const modal = document.querySelector('#modal-login');
         M.Modal.getInstance(modal).close();
         loginForm.reset();
+
+        return getUser(cred.user.uid)
+    }).then(doc=>{
+        currentUser = doc;
+        currentUserData = doc.data();
+        console.info(currentUserData);
     })
+    .catch(error=>console.error(error));
 })
