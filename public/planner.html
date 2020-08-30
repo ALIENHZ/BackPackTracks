@@ -35,13 +35,27 @@
             <form id="form-container" class="col s6">
                 <div class="row">
                     <div class="input-field col s10">
-                    <input placeholder="" id="num-of-stops" type="number" min="0" max="100" class="validate col s1" style="margin-left: 118%; color: #f39c12">
+                        <input id="form-name" type="text" class="validate col s4" style="margin-left: 118%; color: #f39c12" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s10">
+                        <input id="form-start-date" type="date" class="validate col s2" style="margin-left: 118%; color: #f39c12" required>
+                    </div>
+                    <div class="input-field col s10">
+                        <input id="form-end-date" type="date" class="validate col s2" style="margin-left: 118%; color: #f39c12" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s10">
+                    <input placeholder="" id="num-of-stops" type="number" value="3" min="1" max="100" class="validate col s1" style="margin-left: 118%; color: #f39c12">
                     <label for="first_name" style="margin-left: 97%">How many stops would you like on your road trip?</label>
                     </div>
                 </div>
                 <div id="destination-container">
 
                 </div>
+                <input id="form-submit" type="submit">
             </form>
         </div>
 
